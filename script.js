@@ -8,13 +8,13 @@ let prevCalculatorScreen = document.getElementById('prev-calculator-screen');
 
 let operatorButtons = document.querySelectorAll('.operator');
 let numberButtons = document.querySelectorAll('.button');
-let clearButton = document.querySelector(".all-clear");
-let equalsButton = document.querySelector(".equal-sign");
-let decimalButton = document.querySelector(".decimal");
+let clearButton = document.querySelector('.all-clear');
+let equalsButton = document.querySelector('.equal-sign');
+let decimalButton = document.querySelector('.decimal');
 
 clearButton.addEventListener('click', clear);
 equalsButton.addEventListener('click', calculation);
-// decimalButton.addEventListener('click', appendDecimal);
+decimalButton.addEventListener('click', appendDecimal);
 
 
 numberButtons.forEach((button) =>
@@ -38,7 +38,14 @@ function appendNumber(n) {
     if (calculatorScreen.textContent === '0' || screenClear)
         clearScreen()
     calculatorScreen.textContent += n;
-    
+}
+
+function appendDecimal(){
+    if (screenClear) clearScreen()
+    if (calculatorScreen.textContent === '')
+        calculatorScreen.textContent = 0;
+    if (calculatorScreen.textContent.includes('.')) return
+    calculatorScreen.textContent += '.';
 }
 
 function clearScreen() {
